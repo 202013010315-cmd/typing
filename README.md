@@ -1,4 +1,4 @@
 # typing
-Typing Game
+Typing Game.
 <creat>
 It was created by chat gpt
