@@ -1,0 +1,31 @@
+html
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>バトルタイピング</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>⚔ バトルタイピング</h1>
+
+  <div id="status">
+    <p>HP: <span id="hp">99</span></p>
+    <p>ライフ: <span id="life">3</span></p>
+  </div>
+
+  <div id="difficulty">
+    <button onclick="startGame('easy')">簡単</button>
+    <button onclick="startGame('normal')">普通</button>
+    <button onclick="startGame('hard')">難しい</button>
+  </div>
+
+  <h2 id="enemy"></h2>
+  <input type="text" id="input" disabled autocomplete="off">
+
+  <p id="message"></p>
+
+  <script src="script.js"></script>
+</body>
+</html>
