@@ -7,9 +7,22 @@
 </head>
 <body>
 
-<h1>⚔ タイピングバトル ⚔</h1>
+<h1>タイピングバトル</h1>
 
-<button onclick="alert('ゲーム開始')">スタート</button>
+<div id="menu">
+  <button onclick="startGame('easy')">かんたん</button>
+  <button onclick="startGame('normal')">ふつう</button>
+  <button onclick="startGame('hard')">むずかしい</button>
+</div>
 
+<div id="game" style="display:none;">
+  <p id="enemy"></p>
+  <p id="hp"></p>
+  <p id="life"></p>
+  <input id="typing" placeholder="ここに入力">
+  <p id="msg"></p>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
