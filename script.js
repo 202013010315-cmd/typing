@@ -1,39 +1,56 @@
-let playerHp = 99;
+let enemyHP = 99;
 let life = 3;
-let enemyHp = 0;
-let maxEnemyHp = 0;
-let difficulty = "";
-
-const enemies = [
-  { name: "スライム", hp: 30 },
-  { name: "ゴブリン", hp: 50 },
-  { name: "ドラゴン", hp: 80 }
-];
-
-const words = [
-  { jp: "たたかう", roma: "tatakau" },
-  { jp: "まほう", roma: "mahou" },
-  { jp: "ゆうしゃ", roma: "yuusya" }
-];
-
-const bgm = document.getElementById("bgm");
+let currentEnemy = '';
+let enemies = ['スライム', 'ゴブリン', 'ドラゴン'];
 
 function startGame(diff) {
-  difficulty = diff;
+  // 難易度によるHP調整
+  if(diff === 'easy') enemyHP = 50;
+  if(diff === 'normal') enemyHP = 99;
+  if(diff === 'hard') enemyHP = 150;
 
-  // 🔑 ユーザー操作後なので安全
-  if (bgm) {
-    bgm.volume = 0.4;
-    bgm.play().catch(() => {});
-  }
-
-  document.getElementById("menu").classList.add("hidden");
-  document.getElementById("game").classList.remove("hidden");
+  life = 3;
+  document.getElementById('menu').style.display = 'none';
+  document.getElementById('game').style.display = 'block';
 
   spawnEnemy();
 }
 
 function spawnEnemy() {
+  // ランダムで敵を決定
+  currentEnemy = enemies[Math.floor(Math.random()*enemies.length)];
+  document.getElementById('enemy').textContent = '敵: ' + currentEnemy;
+  document.getElementById('hp').textContent = 'HP: ' + enemyHP;
+  document.getElementById('typing').value = '';
+  document.getElementById('message').textContent = '敵の名前をタイプして倒せ！';
+
+  // 入力欄にフォーカス
+  document.getElementById('typing').focus();
+}
+
+// タイピング判定
+document.getElementById('typing').addEventListener('input', function() {
+  let input = this.value;
+  if(input === currentEnemy) {
+    enemyHP -= 20;
+    document.getElementById('hp').textContent = 'HP: ' + enemyHP;
+    this.value = '';
+
+    if(enemyHP <= 0) {
+      life--;
+      document.getElementById('life').textContent = 'ライフ: ' + life;
+      if(life <= 0) {
+        document.getElementById('message').textContent = 'ゲームオーバー！';
+        document.getElementById('typing').disabled = true;
+      } else {
+        enemyHP = 99; // 次の敵HP
+        spawnEnemy();
+      }
+    } else {
+      spawnEnemy();
+    }
+  }
+});
   const e = enemies[Math.floor(Math.random() * enemies.length)];
   enemyHp = e.hp;
   maxEnemyHp = e.hp;
