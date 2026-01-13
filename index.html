@@ -8,32 +8,39 @@
 </head>
 <body>
 
-<div id="screen">
+<h1>⚔ タイピングバトル ⚔</h1>
 
-<h1>⚔ TYPING BATTLE ⚔</h1>
+<!-- 難易度選択画面 -->
+<div id="menu">
+  <h2>難易度を選んでください</h2>
+  <button onclick="startGame('easy')">かんたん</button>
+  <button onclick="startGame('normal')">ふつう</button>
+  <button onclick="startGame('hard')">むずかしい</button>
+</div>
 
-<div id="status">
+<!-- ゲーム画面 -->
+<div id="game" class="hidden">
+
   <p>HP</p>
   <div class="hp-bar"><div id="playerHpBar"></div></div>
-  <p>ライフ: <span id="life">3</span></p>
-  <p>コンボ: <span id="combo">0</span></p>
-  <p>スキル: <span id="skill">0%</span></p>
+  <p>ライフ：<span id="life">3</span></p>
+
+  <!-- 👾 敵表示 -->
+  <div id="enemy">
+    <h2 id="enemyName"></h2>
+    <div class="hp-bar"><div id="enemyHpBar"></div></div>
+  </div>
+
+  <p id="word"></p>
+  <input id="input" autocomplete="off">
+
 </div>
 
-<h2 id="stage"></h2>
+<audio id="bgm" src="sounds/bgm.mp3" loop></audio>
 
-<div id="enemyArea">
-  <h2 id="enemyName"></h2>
-  <div class="hp-bar"><div id="enemyHpBar"></div></div>
-  <div id="timeBar"><div id="time"></div></div>
-</div>
-
-<p id="word"></p>
-<input id="input" autocomplete="off">
-
-<button onclick="useSkill()">🔥 必殺技</button>
-
-<div id="effect"></div>
+<script src="script.js"></script>
+</body>
+</html>
 
 <audio id="bgm" src="sounds/bgm.mp3" loop></audio>
 
