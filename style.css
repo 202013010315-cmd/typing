@@ -4,27 +4,16 @@ html, body {
   height: 100%;
 }
 
-/* 背景 */
 body {
-  background: url("images/background.jpg") no-repeat center center fixed;
-  background-size: cover;
   font-family: sans-serif;
   text-align: center;
   color: white;
-}
 
-/* ⚠ 背景レイヤーがクリックを邪魔しないように */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none; /* ←←← これが最重要 */
-}
-
-/* UIは前面 */
-#menu, #game, h1 {
-  position: relative;
-  z-index: 1;
+  /* 背景はこれだけ */
+  background-image: url("images/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
 }
 
 /* ボタン */
@@ -33,4 +22,10 @@ button {
   padding: 12px 24px;
   margin: 10px;
   cursor: pointer;
+}
+
+/* 入力欄 */
+#typing {
+  font-size: 18px;
+  padding: 8px;
 }
