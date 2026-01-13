@@ -20,9 +20,16 @@ const bgm = document.getElementById("bgm");
 
 function startGame(diff) {
   difficulty = diff;
+
+  // 🔑 ユーザー操作後なので安全
+  if (bgm) {
+    bgm.volume = 0.4;
+    bgm.play().catch(() => {});
+  }
+
   document.getElementById("menu").classList.add("hidden");
   document.getElementById("game").classList.remove("hidden");
-  bgm.play();
+
   spawnEnemy();
 }
 
@@ -34,6 +41,42 @@ function spawnEnemy() {
   document.getElementById("enemyName").textContent = e.name;
   updateEnemyHp();
   nextWord();
+}
+
+function nextWord() {
+  const w = words[Math.floor(Math.random() * words.length)];
+  document.getElementById("word").textContent =
+    `${w.jp}（${w.roma}）`;
+
+  const input = document.getElementById("input");
+  input.dataset.answer = w.roma;
+  input.value = "";
+  input.focus();
+}
+
+document.getElementById("input").addEventListener("input", () => {
+  const input = document.getElementById("input");
+  if (input.value === input.dataset.answer) {
+    enemyHp -= getDamage();
+    updateEnemyHp();
+    nextWord();
+
+    if (enemyHp <= 0) {
+      spawnEnemy();
+    }
+  }
+});
+
+function getDamage() {
+  if (difficulty === "easy") return 10;
+  if (difficulty === "normal") return 15;
+  return 20;
+}
+
+function updateEnemyHp() {
+  document.getElementById("enemyHpBar").style.width =
+    (enemyHp / maxEnemyHp * 100) + "%";
+}
 }
 
 function nextWord() {
