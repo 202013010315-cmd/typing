@@ -2,27 +2,22 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>タイピングバトル</title>
-  <link rel="stylesheet" href="style.css">
+  <title>クリック確認</title>
 </head>
-<body>
+<body style="
+  margin:0;
+  height:100vh;
+  background:url('battle.jpg') center/cover no-repeat;
+  text-align:center;
+  color:white;
+">
 
-<h1>⚔ タイピングバトル ⚔</h1>
+<h1>背景＋クリック確認</h1>
 
-<div id="menu">
-  <button onclick="startGame('easy')">かんたん</button>
-  <button onclick="startGame('normal')">ふつう</button>
-  <button onclick="startGame('hard')">むずかしい</button>
-</div>
+<button onclick="alert('押せた')"
+  style="font-size:20px; padding:20px; cursor:pointer;">
+  押して
+</button>
 
-<div id="game" style="display:none;">
-  <p id="enemy"></p>
-  <p id="hp"></p>
-  <p id="life"></p>
-  <input id="typing" type="text">
-</div>
-
-<script src="script.js"></script>
 </body>
 </html>
