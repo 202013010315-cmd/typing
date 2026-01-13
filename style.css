@@ -8,7 +8,7 @@ body {
   font-family: sans-serif;
   text-align: center;
   color: white;
-  background: url("images/background.jpg") center / cover no-repeat;
+  background: url("battle.jpg") center / cover no-repeat;
 }
 
 /* ボタンは触らない */
