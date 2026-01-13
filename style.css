@@ -1,5 +1,13 @@
+/* 背景 */
+#background {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #111, #000);
+  z-index: -1; /* ← 重要：ボタンの下に送る */
+}
+
 body {
-  background: #000;
+  margin: 0;
   color: #fff;
   font-family: sans-serif;
   text-align: center;
@@ -11,13 +19,14 @@ body {
 
 button {
   font-size: 18px;
-  padding: 10px 20px;
+  padding: 12px 24px;
   margin: 10px;
+  cursor: pointer;
 }
 
 .hp-bar {
-  width: 250px;
-  height: 20px;
+  width: 260px;
+  height: 18px;
   border: 1px solid #fff;
   margin: 5px auto;
 }
@@ -29,11 +38,17 @@ button {
 }
 
 #enemy {
-  margin: 20px;
+  margin: 20px auto;
   padding: 10px;
+  width: 280px;
   border: 2px solid red;
 }
 
+input {
+  font-size: 20px;
+  width: 260px;
+  padding: 5px;
+}
 input {
   font-size: 20px;
   width: 250px;
