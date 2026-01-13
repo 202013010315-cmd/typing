@@ -2,7 +2,13 @@ body {
   font-family: sans-serif;
   text-align: center;
   background: url("battle.jpg") center/cover no-repeat;
+  margin: 0;
   color: white;
+}
+
+#menu, #game {
+  position: relative; /* 背景の下に埋もれないようにする */
+  z-index: 10;        /* 最前面に表示 */
 }
 
 button {
@@ -17,7 +23,7 @@ button {
   padding: 5px;
 }
 
-/* エフェクト用の簡易クラス */
+/* エフェクト用 */
 .shake {
   animation: shake 0.3s;
 }
