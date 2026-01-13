@@ -3,37 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typing Battle</title>
+  <title>タイピングバトル</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- 背景 -->
+<div id="background"></div>
+
 <h1>⚔ タイピングバトル ⚔</h1>
 
-<!-- 難易度選択画面 -->
+<!-- 🔰 難易度選択 -->
 <div id="menu">
   <h2>難易度を選んでください</h2>
-  <button onclick="startGame('easy')">かんたん</button>
-  <button onclick="startGame('normal')">ふつう</button>
-  <button onclick="startGame('hard')">むずかしい</button>
+  <button type="button" onclick="startGame('easy')">かんたん</button>
+  <button type="button" onclick="startGame('normal')">ふつう</button>
+  <button type="button" onclick="startGame('hard')">むずかしい</button>
 </div>
 
-<!-- ゲーム画面 -->
+<!-- 🎮 ゲーム画面 -->
 <div id="game" class="hidden">
 
-  <p>HP</p>
-  <div class="hp-bar"><div id="playerHpBar"></div></div>
+  <p>プレイヤーHP</p>
+  <div class="hp-bar">
+    <div id="playerHpBar"></div>
+  </div>
+
   <p>ライフ：<span id="life">3</span></p>
 
-  <!-- 👾 敵表示 -->
+  <!-- 👾 敵 -->
   <div id="enemy">
     <h2 id="enemyName"></h2>
-    <div class="hp-bar"><div id="enemyHpBar"></div></div>
+    <div class="hp-bar">
+      <div id="enemyHpBar"></div>
+    </div>
   </div>
 
   <p id="word"></p>
   <input id="input" autocomplete="off">
 
+</div>
+
+<!-- 🎵 BGM（押した後に再生） -->
+<audio id="bgm" src="sounds/bgm.mp3" loop></audio>
+
+<script src="script.js"></script>
+</body>
+</html>
 </div>
 
 <audio id="bgm" src="sounds/bgm.mp3" loop></audio>
