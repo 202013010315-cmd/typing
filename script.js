@@ -68,6 +68,40 @@ function updateEnemyHp() {
   document.getElementById("enemyHpBar").style.width =
     (enemyHp / maxEnemyHp * 100) + "%";
 }
+}
+
+function nextWord() {
+  const w = words[Math.floor(Math.random() * words.length)];
+  document.getElementById("word").textContent =
+    `${w.jp}（${w.roma}）`;
+  document.getElementById("input").dataset.answer = w.roma;
+  document.getElementById("input").value = "";
+  document.getElementById("input").focus();
+}
+
+document.getElementById("input").addEventListener("input", () => {
+  const input = document.getElementById("input");
+  if (input.value === input.dataset.answer) {
+    enemyHp -= getDamage();
+    updateEnemyHp();
+    nextWord();
+
+    if (enemyHp <= 0) {
+      spawnEnemy();
+    }
+  }
+});
+
+function getDamage() {
+  if (difficulty === "easy") return 10;
+  if (difficulty === "normal") return 15;
+  return 20;
+}
+
+function updateEnemyHp() {
+  document.getElementById("enemyHpBar").style.width =
+    (enemyHp / maxEnemyHp * 100) + "%";
+}
 
 el("input").addEventListener("input", () => {
   if (el("input").value === el("input").dataset.answer) {
