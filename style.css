@@ -3,7 +3,7 @@ body {
   font-family: sans-serif;
   text-align: center;
   color: white;
-  background: url('images/background.jpg') no-repeat center center fixed;
+  background: url('battle.jpg') no-repeat center center fixed;
   background-size: cover; /* 画面全体に拡大 */
 }
 
