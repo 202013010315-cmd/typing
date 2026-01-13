@@ -1,31 +1,44 @@
-html
-
 <!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>バトルタイピング</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typing Battle</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>⚔ バトルタイピング</h1>
 
-  <div id="status">
-    <p>HP: <span id="hp">99</span></p>
-    <p>ライフ: <span id="life">3</span></p>
-  </div>
+<div id="screen">
 
-  <div id="difficulty">
-    <button onclick="startGame('easy')">簡単</button>
-    <button onclick="startGame('normal')">普通</button>
-    <button onclick="startGame('hard')">難しい</button>
-  </div>
+<h1>⚔ TYPING BATTLE ⚔</h1>
 
-  <h2 id="enemy"></h2>
-  <input type="text" id="input" disabled autocomplete="off">
+<div id="status">
+  <p>HP</p>
+  <div class="hp-bar"><div id="playerHpBar"></div></div>
+  <p>ライフ: <span id="life">3</span></p>
+  <p>コンボ: <span id="combo">0</span></p>
+  <p>スキル: <span id="skill">0%</span></p>
+</div>
 
-  <p id="message"></p>
+<h2 id="stage"></h2>
 
-  <script src="script.js"></script>
+<div id="enemyArea">
+  <h2 id="enemyName"></h2>
+  <div class="hp-bar"><div id="enemyHpBar"></div></div>
+  <div id="timeBar"><div id="time"></div></div>
+</div>
+
+<p id="word"></p>
+<input id="input" autocomplete="off">
+
+<button onclick="useSkill()">🔥 必殺技</button>
+
+<div id="effect"></div>
+
+<audio id="bgm" src="sounds/bgm.mp3" loop></audio>
+
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>
