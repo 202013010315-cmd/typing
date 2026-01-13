@@ -3,37 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>タイピングバトル</title>
+  <title>タイピングバトル（音なし）</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- 背景 -->
-<div id="background"></div>
+<h1>⚔ タイピングバトル（音無し）⚔</h1>
 
-<h1>⚔ タイピングバトル ⚔</h1>
-
-<!-- 🔰 難易度選択 -->
+<!-- 難易度選択 -->
 <div id="menu">
-  <h2>難易度を選んでください</h2>
-  <button type="button" onclick="startGame('easy')">かんたん</button>
-  <button type="button" onclick="startGame('normal')">ふつう</button>
-  <button type="button" onclick="startGame('hard')">むずかしい</button>
+  <button onclick="startGame('easy')">かんたん</button>
+  <button onclick="startGame('normal')">ふつう</button>
+  <button onclick="startGame('hard')">むずかしい</button>
 </div>
 
-<!-- 🎮 ゲーム画面 -->
-<div id="game" class="hidden">
+<!-- ゲーム画面 -->
+<div id="game" style="display:none;">
+  <p id="enemy">敵: ？？？</p>
+  <p id="hp">HP: 99</p>
+  <p id="life">ライフ: 3</p>
+  <input type="text" id="typing" placeholder="ここに入力" autofocus>
+  <p id="message"></p>
+</div>
 
-  <p>プレイヤーHP</p>
-  <div class="hp-bar">
-    <div id="playerHpBar"></div>
-  </div>
-
-  <p>ライフ：<span id="life">3</span></p>
-
-  <!-- 👾 敵 -->
-  <div id="enemy">
-    <h2 id="enemyName"></h2>
+<script src="script.js"></script>
+</body>
+</html>
     <div class="hp-bar">
       <div id="enemyHpBar"></div>
     </div>
