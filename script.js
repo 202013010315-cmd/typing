@@ -1,38 +1,72 @@
-let stage = 1, life = 3, combo = 0, skill = 0;
-let playerHp = 99, enemyHp, maxEnemyHp;
-let time = 100, timer;
+let playerHp = 99;
+let life = 3;
+let enemyHp = 0;
+let maxEnemyHp = 0;
+let difficulty = "";
 
-const words = [
-  { jp: "ゆうしゃ", roma: "yuusya" },
-  { jp: "まほう", roma: "mahou" },
-  { jp: "たたかう", roma: "tatakau" }
+const enemies = [
+  { name: "スライム", hp: 30 },
+  { name: "ゴブリン", hp: 50 },
+  { name: "ドラゴン", hp: 80 }
 ];
 
-const el = id => document.getElementById(id);
+const words = [
+  { jp: "たたかう", roma: "tatakau" },
+  { jp: "まほう", roma: "mahou" },
+  { jp: "ゆうしゃ", roma: "yuusya" }
+];
 
-const bgm = el("bgm");
-bgm.volume = 0.4;
+const bgm = document.getElementById("bgm");
 
-function startStage() {
+function startGame(diff) {
+  difficulty = diff;
+  document.getElementById("menu").classList.add("hidden");
+  document.getElementById("game").classList.remove("hidden");
   bgm.play();
-  el("stage").textContent = `STAGE ${stage}`;
-  const boss = stage % 5 === 0;
-  el("enemyName").textContent = boss ? "👑 BOSS" : "ENEMY";
+  spawnEnemy();
+}
 
-  maxEnemyHp = boss ? 200 + stage * 20 : 80 + stage * 10;
-  enemyHp = maxEnemyHp;
+function spawnEnemy() {
+  const e = enemies[Math.floor(Math.random() * enemies.length)];
+  enemyHp = e.hp;
+  maxEnemyHp = e.hp;
 
+  document.getElementById("enemyName").textContent = e.name;
+  updateEnemyHp();
   nextWord();
-  startTimer();
-  updateUI();
 }
 
 function nextWord() {
   const w = words[Math.floor(Math.random() * words.length)];
-  el("word").textContent = `${w.jp} (${w.roma})`;
-  el("input").dataset.answer = w.roma;
-  el("input").value = "";
-  el("input").focus();
+  document.getElementById("word").textContent =
+    `${w.jp}（${w.roma}）`;
+  document.getElementById("input").dataset.answer = w.roma;
+  document.getElementById("input").value = "";
+  document.getElementById("input").focus();
+}
+
+document.getElementById("input").addEventListener("input", () => {
+  const input = document.getElementById("input");
+  if (input.value === input.dataset.answer) {
+    enemyHp -= getDamage();
+    updateEnemyHp();
+    nextWord();
+
+    if (enemyHp <= 0) {
+      spawnEnemy();
+    }
+  }
+});
+
+function getDamage() {
+  if (difficulty === "easy") return 10;
+  if (difficulty === "normal") return 15;
+  return 20;
+}
+
+function updateEnemyHp() {
+  document.getElementById("enemyHpBar").style.width =
+    (enemyHp / maxEnemyHp * 100) + "%";
 }
 
 el("input").addEventListener("input", () => {
