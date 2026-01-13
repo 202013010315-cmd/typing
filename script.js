@@ -22,7 +22,7 @@ function nextEnemy() {
   document.getElementById("typing").value = "";
   document.getElementById("typing").focus();
 
-  // 敵出現時のエフェクト
+  // 出現エフェクト
   document.getElementById("enemy").classList.add("shake");
   setTimeout(() => {
     document.getElementById("enemy").classList.remove("shake");
@@ -34,7 +34,7 @@ document.getElementById("typing").addEventListener("input", function () {
     enemyHP -= 20;
     this.value = "";
 
-    // ダメージ時のエフェクト
+    // ダメージエフェクト
     document.getElementById("enemy").classList.add("shake");
     setTimeout(() => {
       document.getElementById("enemy").classList.remove("shake");
