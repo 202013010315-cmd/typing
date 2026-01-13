@@ -1,16 +1,76 @@
 body {
+  margin: 0;
+  background: #000;
+  color: #fff;
   font-family: sans-serif;
   text-align: center;
-  background: #222;
-  color: #fff;
+}
+
+#screen {
+  padding: 10px;
+}
+
+.hp-bar {
+  width: 90%;
+  max-width: 300px;
+  height: 18px;
+  border: 1px solid #fff;
+  margin: auto;
+}
+
+.hp-bar div {
+  height: 100%;
+  background: lime;
+  transition: width 0.3s;
+}
+
+#timeBar {
+  width: 90%;
+  max-width: 300px;
+  height: 10px;
+  border: 1px solid #fff;
+  margin: 10px auto;
+}
+
+#time {
+  height: 100%;
+  background: red;
 }
 
 input {
   font-size: 20px;
-  padding: 5px;
+  width: 90%;
+  max-width: 300px;
 }
 
 button {
-  font-size: 16px;
-  margin: 5px;
+  font-size: 18px;
+  margin: 10px;
 }
+
+/* 🔥 画面揺れ */
+.shake {
+  animation: shake 0.2s;
+}
+
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(-5px); }
+  50% { transform: translate(5px); }
+  75% { transform: translate(-5px); }
+  100% { transform: translate(0); }
+}
+
+/* 💥 文字爆発 */
+.effect-text {
+  position: absolute;
+  color: yellow;
+  font-size: 32px;
+  animation: explode 0.6s forwards;
+}
+
+@keyframes explode {
+  from { transform: scale(1); opacity: 1; }
+  to { transform: scale(2); opacity: 0; }
+}
+
