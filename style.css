@@ -1,25 +1,30 @@
-/* 背景を最背面に固定 */
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+/* 背景を最下層に固定 */
+html, body {
+  margin: 0;
+  padding: 0;
   height: 100%;
-  background: url('battle.jpg') no-repeat center center;
-  background-size: cover;
-  z-index: -1;
 }
 
 body {
   font-family: sans-serif;
   text-align: center;
   color: white;
-  margin: 0;
-  padding: 0;
+
+  /* 背景画像 */
+  background-image: url('images/background.jpg');
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /* 背景を固定 */
+  background-attachment: fixed;
+
+  /* 背景が一番下 */
+  z-index: 0;
+  position: relative; /* z-index を効かせるため */
 }
 
-/* ボタン */
+/* ボタンや入力欄 */
 button {
   font-size: 18px;
   padding: 12px 24px;
@@ -30,10 +35,36 @@ button {
   background: rgba(0,0,0,0.6);
   color: white;
   transition: 0.2s;
+  position: relative; /* 背景より上に表示 */
+  z-index: 1;
 }
 
 button:hover {
   background: rgba(255,255,255,0.3);
+}
+
+input#typing {
+  font-size: 18px;
+  padding: 8px;
+  width: 200px;
+  text-align: center;
+  margin-top: 20px;
+  border-radius: 6px;
+  border: 2px solid white;
+  background: rgba(0,0,0,0.5);
+  color: white;
+  position: relative;
+  z-index: 1;
+}
+
+/* 敵・HP・ライフ表示 */
+#enemy, #hp, #life, #message {
+  font-size: 20px;
+  margin: 10px;
+  text-shadow: 1px 1px 4px black;
+  position: relative;
+  z-index: 1;
+}
 }
 
 /* 入力欄 */
