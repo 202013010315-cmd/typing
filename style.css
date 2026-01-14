@@ -1,56 +1,68 @@
+/* ===== 背景 ===== */
 body {
   margin: 0;
   min-height: 100vh;
+  background: url("battle.jpg") center/cover no-repeat;
   font-family: sans-serif;
-  text-align: center;
   color: white;
-
-  background-image: url("battle.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
 }
 
-/* 画面揺れ */
-.shake {
-  animation: shake 0.3s;
+/* 全体UI */
+#ui {
+  padding-top: 30px;
+  text-align: center;
 }
 
-@keyframes shake {
-  0% { transform: translate(0); }
-  25% { transform: translate(8px); }
-  50% { transform: translate(-8px); }
-  75% { transform: translate(8px); }
-  100% { transform: translate(0); }
+/* ===== ステータス ===== */
+.status {
+  width: 300px;
+  margin: 10px auto;
 }
 
-button {
-  font-size: 20px;
-  padding: 12px 30px;
-  cursor: pointer;
+.label {
+  margin-bottom: 4px;
 }
 
-#status {
-  margin-top: 20px;
-  font-size: 18px;
+/* HPバー外枠 */
+.hp-bar {
+  width: 100%;
+  height: 20px;
+  border: 2px solid white;
+  background: rgba(0,0,0,0.5);
 }
 
-/* 中央の枠 */
-#typingBox {
-  margin: 40px auto;
+/* HP中身 */
+.hp {
+  height: 100%;
+}
+
+/* 敵HP */
+.hp.enemy {
+  width: 80%; /* ← ここを変えるだけで減った感出る */
+  background: red;
+}
+
+/* 自分HP */
+.hp.player {
+  width: 60%;
+  background: lime;
+}
+
+/* ===== 中央の枠 ===== */
+#typing-box {
+  margin: 50px auto;
   width: 320px;
   padding: 20px;
   border: 3px solid white;
   background: rgba(0,0,0,0.6);
 }
 
-#word {
-  font-size: 24px;
+.word {
+  font-size: 28px;
   margin-bottom: 10px;
 }
 
-#typing {
-  width: 90%;
-  font-size: 18px;
-  padding: 6px;
+.hint {
+  font-size: 14px;
+  opacity: 0.8;
 }
