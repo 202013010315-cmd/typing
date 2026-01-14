@@ -2,59 +2,64 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: url("battle.jpg") center/cover no-repeat;
   font-family: sans-serif;
   color: white;
-}
-
-/* 全体UI */
-#ui {
-  padding-top: 30px;
   text-align: center;
+
+  background-image: url("battle.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
 }
 
-/* ===== ステータス ===== */
+/* 全体 */
+#game-ui {
+  padding-top: 30px;
+}
+
+/* ステータス */
 .status {
-  width: 300px;
+  width: 320px;
   margin: 10px auto;
 }
 
-.label {
+.name {
   margin-bottom: 4px;
+  font-weight: bold;
 }
 
-/* HPバー外枠 */
+/* HPバー */
 .hp-bar {
   width: 100%;
   height: 20px;
   border: 2px solid white;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.6);
 }
 
-/* HP中身 */
 .hp {
   height: 100%;
+  transition: width 0.3s;
 }
 
-/* 敵HP */
-.hp.enemy {
-  width: 80%; /* ← ここを変えるだけで減った感出る */
+.enemy-hp {
+  width: 100%;
   background: red;
 }
 
-/* 自分HP */
-.hp.player {
-  width: 60%;
+.player-hp {
+  width: 100%;
   background: lime;
 }
 
-/* ===== 中央の枠 ===== */
+/* タイピング枠 */
 #typing-box {
   margin: 50px auto;
-  width: 320px;
+  width: 340px;
   padding: 20px;
   border: 3px solid white;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,0.65);
+  position: relative;
 }
 
 .word {
@@ -62,7 +67,55 @@ body {
   margin-bottom: 10px;
 }
 
+.typing-input {
+  width: 90%;
+  font-size: 18px;
+  padding: 6px;
+  text-align: center;
+}
+
 .hint {
+  margin-top: 8px;
   font-size: 14px;
   opacity: 0.8;
+}
+
+/* 画面揺れ */
+.shake {
+  animation: shake 0.3s;
+}
+
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(8px); }
+  50% { transform: translate(-8px); }
+  75% { transform: translate(8px); }
+  100% { transform: translate(0); }
+}
+
+/* ダメージ数字 */
+.damage {
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  color: yellow;
+  pointer-events: none;
+  animation: floatUp 0.8s forwards;
+}
+
+@keyframes floatUp {
+  0% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-50px); }
+}
+
+/* コンボ表示 */
+#combo {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-weight: bold;
+  color: cyan;
+  text-shadow: 1px 1px 4px black;
 }
