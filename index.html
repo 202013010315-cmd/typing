@@ -10,21 +10,25 @@
 
 <h1>⚔ タイピングバトル ⚔</h1>
 
-<!-- 難易度選択 -->
+<!-- スタート -->
 <div id="menu">
-  <p>難易度を選べ</p>
-  <button onclick="startGame('easy')">かんたん</button>
-  <button onclick="startGame('normal')">ふつう</button>
-  <button onclick="startGame('hard')">むずかしい</button>
+  <button onclick="startGame()">スタート</button>
 </div>
 
-<!-- ゲーム画面 -->
+<!-- ゲーム -->
 <div id="game" style="display:none;">
-  <div id="enemy"></div>
-  <div id="hp"></div>
-  <div id="life"></div>
+  <div id="status">
+    <div id="enemy">敵：</div>
+    <div id="enemyHp">敵HP：</div>
+    <div id="playerHp">自分HP：</div>
+  </div>
 
-  <input id="typing" placeholder="ここに入力" autocomplete="off">
+  <!-- 中央の枠 -->
+  <div id="typingBox">
+    <div id="word"></div>
+    <input id="typing" placeholder="ここを打て" autocomplete="off">
+  </div>
+
   <div id="msg"></div>
 </div>
 
