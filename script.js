@@ -1,60 +1,100 @@
-const words = ["かみなり", "ほのお", "つるぎ", "まほう"];
+// ===== ステータス =====
+let enemyHP = 100;
+let playerHP = 100;
+const enemyDamage = 20;
+const playerDamage = 10;
 
-let enemyHP;
-let playerHP;
-let currentWord;
+const words = ["ほのお", "かみなり", "つるぎ", "まほう"];
+let currentWord = "";
 
-function startGame() {
-  document.getElementById("menu").style.display = "none";
-  document.getElementById("game").style.display = "block";
+// コンボ管理
+let comboCount = 0;
+let comboTimeout;
 
-  enemyHP = 100;
-  playerHP = 100;
+// ===== 要素取得 =====
+const enemyHpBar = document.querySelector(".enemy-hp");
+const playerHpBar = document.querySelector(".player-hp");
+const wordEl = document.querySelector(".word");
+const inputEl = document.querySelector(".typing-input");
+const comboEl = document.querySelector("#combo");
 
-  nextWord();
-  updateStatus();
-}
+// ===== 初期単語 =====
+nextWord();
 
-function nextWord() {
-  currentWord = words[Math.floor(Math.random() * words.length)];
-  document.getElementById("word").textContent = currentWord;
-  document.getElementById("typing").value = "";
-  document.getElementById("typing").focus();
-}
+// ===== 入力判定 =====
+inputEl.addEventListener("input", () => {
+  if (inputEl.value === currentWord) {
+    inputEl.value = "";
 
-function updateStatus() {
-  document.getElementById("enemy").textContent = "敵：モンスター";
-  document.getElementById("enemyHp").textContent = "敵HP：" + enemyHP;
-  document.getElementById("playerHp").textContent = "自分HP：" + playerHP;
-}
+    // コンボ
+    comboCount++;
+    comboEl.textContent = comboCount >= 2 ? comboCount + "コンボ!" : "";
+    clearTimeout(comboTimeout);
+    comboTimeout = setTimeout(() => { comboCount = 0; comboEl.textContent = ""; }, 1500);
 
-document.getElementById("typing").addEventListener("input", function () {
-  if (this.value === currentWord) {
-    this.value = "";
+    // 敵ダメージ
+    enemyHP -= enemyDamage;
+    if (enemyHP < 0) enemyHP = 0;
+    updateHP();
+    showDamage(enemyDamage, wordEl);
+    shake();
 
-    // ダメージ
-    enemyHP -= 20;
-
-    // 画面揺れ
-    document.body.classList.add("shake");
-    setTimeout(() => {
-      document.body.classList.remove("shake");
-    }, 300);
-
-    if (enemyHP <= 0) {
-      document.getElementById("msg").textContent = "敵を倒した！";
+    if (enemyHP === 0) {
+      wordEl.textContent = "勝利！";
+      inputEl.disabled = true;
       return;
     }
 
     // 敵の反撃
-    playerHP -= 10;
-    if (playerHP <= 0) {
-      document.getElementById("msg").textContent = "ゲームオーバー";
-      this.disabled = true;
-      return;
-    }
+    setTimeout(() => {
+      playerHP -= playerDamage;
+      if (playerHP < 0) playerHP = 0;
+      updateHP();
+      showDamage(playerDamage, wordEl, false);
+      shake();
 
-    updateStatus();
-    nextWord();
+      if (playerHP === 0) {
+        wordEl.textContent = "ゲームオーバー";
+        inputEl.disabled = true;
+        return;
+      }
+
+      nextWord();
+    }, 300);
   }
 });
+
+// ===== HP更新 =====
+function updateHP() {
+  enemyHpBar.style.width = enemyHP + "%";
+  playerHpBar.style.width = playerHP + "%";
+}
+
+// ===== 次の単語 =====
+function nextWord() {
+  currentWord = words[Math.floor(Math.random() * words.length)];
+  wordEl.textContent = currentWord;
+  inputEl.focus();
+}
+
+// ===== 画面揺れ =====
+function shake() {
+  document.body.classList.add("shake");
+  setTimeout(() => {
+    document.body.classList.remove("shake");
+  }, 300);
+}
+
+// ===== ダメージ数字表示 =====
+function showDamage(amount, targetEl, isPlayer=false) {
+  const dmg = document.createElement("div");
+  dmg.className = "damage";
+  dmg.textContent = "-" + amount;
+  
+  const rect = targetEl.getBoundingClientRect();
+  dmg.style.left = rect.left + rect.width / 2 + "px";
+  dmg.style.top = rect.top + "px";
+  document.body.appendChild(dmg);
+
+  setTimeout(() => { dmg.remove(); }, 800);
+}
