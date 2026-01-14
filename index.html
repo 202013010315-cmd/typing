@@ -2,31 +2,42 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Typing Battle UI</title>
+  <title>Typing Battle</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div id="ui">
+<div id="game-ui">
+
+  <!-- 敵 -->
   <div class="status">
-    <div class="label">敵</div>
+    <div class="name">敵：モンスター</div>
     <div class="hp-bar">
-      <div class="hp enemy"></div>
+      <div class="hp enemy-hp"></div>
     </div>
   </div>
 
+  <!-- 自分 -->
   <div class="status">
-    <div class="label">自分</div>
+    <div class="name">自分</div>
     <div class="hp-bar">
-      <div class="hp player"></div>
+      <div class="hp player-hp"></div>
     </div>
   </div>
 
+  <!-- コンボ表示 -->
+  <div id="combo"></div>
+
+  <!-- タイピング枠 -->
   <div id="typing-box">
-    <div class="word">ほのお</div>
-    <div class="hint">↑この文字を打つ</div>
+    <div class="word">---</div>
+    <input class="typing-input" placeholder="ここに入力" autocomplete="off">
+    <div class="hint">↑ この文字を打て</div>
   </div>
+
 </div>
 
+<script src="script.js"></script>
 </body>
 </html>
