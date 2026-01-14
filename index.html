@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <title>タイピングバトル</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>タイピングバトル</h1>
+<h1>⚔ タイピングバトル ⚔</h1>
 
+<!-- 難易度選択 -->
 <div id="menu">
-  <button onclick="startGame()">スタート</button>
+  <p>難易度を選べ</p>
+  <button onclick="startGame('easy')">かんたん</button>
+  <button onclick="startGame('normal')">ふつう</button>
+  <button onclick="startGame('hard')">むずかしい</button>
 </div>
 
+<!-- ゲーム画面 -->
 <div id="game" style="display:none;">
-  <p id="enemy"></p>
-  <input id="typing" placeholder="ここに入力">
+  <div id="enemy"></div>
+  <div id="hp"></div>
+  <div id="life"></div>
+
+  <input id="typing" placeholder="ここに入力" autocomplete="off">
+  <div id="msg"></div>
 </div>
 
 <script src="script.js"></script>
