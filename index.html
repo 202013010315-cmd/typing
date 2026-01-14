@@ -7,24 +7,15 @@
 </head>
 <body>
 
-<!-- 背景 -->
-<div id="bg"></div>
+<h1>タイピングバトル</h1>
 
-<!-- スタート画面 -->
 <div id="menu">
-  <h1>タイピングバトル</h1>
-  <button onclick="startGame('easy')">かんたん</button>
-  <button onclick="startGame('normal')">ふつう</button>
-  <button onclick="startGame('hard')">むずかしい</button>
+  <button onclick="startGame()">スタート</button>
 </div>
 
-<!-- ゲーム画面 -->
 <div id="game" style="display:none;">
   <p id="enemy"></p>
-  <p id="hp"></p>
-  <p id="life"></p>
   <input id="typing" placeholder="ここに入力">
-  <p id="msg"></p>
 </div>
 
 <script src="script.js"></script>
